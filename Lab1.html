@@ -28,13 +28,52 @@
 		</code>
 		</pre>
 		<h4>Task 1.1</h4>
-		<p>Configure your git account using your own name and email address instead of mine. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to GitHub, BitBucket, GitLab or another Git host server after this lesson will include this information.
+		<p>Configure your git account using your <strong>own name and email address instead of mine</strong>. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to GitHub, BitBucket, GitLab or another Git host server after this task will include this information.</p>
 
-
-		The user name and email you configure will be linked to all your future Git actions. This means that any changes you push to a Git host server, such as GitHub, BitBucket, or GitLab, will include this information. It's important to use the same email address for this configuration as the one you used to set up your GitHub account. If you are concerned about privacy, you can follow GitHub's instructions for keeping your email address private.
+		<p>
+			The user name and email you configure will be linked to all your future Git actions. This means that any changes you push to a Git host server, such as GitHub will include this information. It's important to use the same email address for this configuration as the one you used to set up your GitHub account (your university login). If you are concerned about privacy, you can follow GitHub's instructions for keeping your email address private.
 		</p>
 
-	  </div>
+		<p>
+			All source file changes reside on what we call a “branch.”. The main branch in a Git repo is called "main" and is the repository of all the code and other files that are pushed to the repository by users. It is the main branch of the version control system, and it contains the most recent version of the code. All the other branches are based on this main branch and their changes can be merged into the main branch.
+		</p>
+			
+		<p>
+			Prior to 2020 the "main" branch was called "master", but the term is regarded to be racist and linked to human slavery. Thus, the software development community has moved to adopt a more inclusive language. In 2020, many popular Git code hosting services, such as GitHub and GitLab, began naming their default branch main rather than the traditional master. Though Git has not yet adopted this change, local repositories can easily be configured to use "main" as their default branch, allowing them to match the same name as most cloud services.
+		</p>
+		
+		<h4>Task 1.2</h4>
+		<p>
+			To change the name of the main branch you would need to update the "init.defaultBranch" value defaults from "master" to "main". using the git command "git config" change globally the defaule main branch to "main".  		
+			
+		</p>
+			You should have noticed that all commands that you have ran above only need to be run once and the flag "--global" tells Git to use the settings for every project, in your user account, on this computer.
+			You can check your settings at any time by running the command:		
+		</p>
+	  	<pre>
+		<code>
+			$ git config --list			
+		</code>
+		</pre>
+	  
+	  	<h4>Optional Task</h4>
+	  	<p> The first time we introduced git in the university we had to setup a proxy, although we are no longer in need of these. We have seen that in some accounts the proxies are setup. Check you settings as mentioned above and verify that no proxy has been set. If a proxy has been set unset it using the following commands (if there are capitals please use capitals):</p>
+	  	<pre>
+		<code>
+			$ git config --global --unset http.proxy
+			$ git config --global --unset https.proxy		
+		</code>
+		</pre>
+	  
+	  	<p>In case that you are setting up git at your home computer and you need to go through a proxy then to set the proxy you would need to use the following commands:</p>
+	  	<pre>
+		<code>
+			$ git config --global http.proxy proxy-url
+			$ git config --global https.proxy proxy-url		
+		</code>
+		</pre>
+	  	<h3>2. Creating a Git Repository</h3>
+	  </div>		
   </section>
 </div>
 </body>
