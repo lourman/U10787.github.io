@@ -77,7 +77,84 @@
 		</code>
 		</pre>
 	  	<h3>2. Creating a Git Repository</h3>
-	    <p>Now that you have configured git on your computer you can proceed to create your first Git repository. To do that you would need first to navigate to the computer folder you wish to use for storing your git repository. Let us assume we need to go </p>
+	    <p>Now that you have configured git on your computer you can proceed to create your first Git repository. To do that you would need first to navigate to the computer folder you wish to use for storing your git repository. Let us assume we need to go and create a git repository in a new folder in the desktop. So we shall first need to navigate to the desktop, then create the directory and eventually go within that directory:</p>
+	  
+	  <pre>
+		<code>
+			$ cd ~/Desktop
+			$ mkdir firstRepo
+			$ cd firstRepo		
+		</code>
+		</pre>
+	  <p> We shall now make Git create our first repository:</p>
+	  <pre>
+		<code>
+			$ git init	
+		</code>
+		</pre>
+	  <p>It is crucial to understand that executing <strong><em>git init</em></strong> will establish a repository that can contain subfolders and their associated files - there is no requirement to establish multiple repositories within the <strong><em>firstRepo</em></strong> repository, whether subdirectories are initially present or added later. Additionally, it is important to keep in mind that the creation of the <strong><em>firstRepo</em></strong> directory and its initialization as a repository are two distinct steps.</p>
+	  <p>If we use the <strong><em>ls</em></strong> command to display the contents of the directory, it may appear that no changes have occurred. But if we use the <strong><em>-a</em></strong> flag then we shall see that a hidden directory has been created.</p>
+	  <pre>
+		<code>
+			PC MINGW64 ~/Desktop/firstRepo (master)
+			$ ls
+
+			PC MINGW64 ~/Desktop/firstRepo (master)
+			$ ls -a
+			./  ../  .git/	
+		</code>
+		</pre>
+	  <p>Git employs the use of this unique subfolder to keep track of all information related to the project, comprising of the files and subdirectories inside the project's directory. It's worth noting that if we delete the <strong><em>.git</em></strong> subfolder, we'll lose the project's history and we no longer have a repository.</p>
+	  <p>Following that, we'll alter the default branch to be referred to as <strong><em>main</em></strong>. This may already be the default branch, depending on your git settings and version. We should also try and see the status of repository after the change:</p>
+	  <pre>
+	  	<code>
+			PC MINGW64 ~/Desktop/firstRepo (master)
+			$ git checkout -b main
+			Switched to a new branch 'main'
+
+			PC MINGW64 ~/Desktop/firstRepo (main)
+			$ git status
+			On branch main
+
+			No commits yet nothing to commit (create/copy files and use "git add" to track)
+		</code>
+		</pre>
+	  <h4>Task 2.1</h4>
+	  <p>Close Git Bash and reopen it. Now navigate back to your first repository and create a subfolder within your git repository called secondRepo. Go within that subfolder and initialise a new repository.</p>
+	  <button onclick="myFunction()">Solution</button>
+
+	  <div id="myDIV">
+	  	<pre>
+	  	<code>
+			$ cd ~/Desktop        # return to Desktop directory
+			$ cd firstRepo        # go into firstRepo directory, which is already a Git repository
+			$ ls -a               # ensure the .git subdirectory is still present in the firstRepo directory
+			$ mkdir secondRepo    # make a subdirectory firstRepo/secondRepo
+			$ cd secondRepo       # go into secondRepo subdirectory
+			$ git init            # make the secondRepo subdirectory a Git repository
+			$ ls -a               # ensure the .git subdirectory is present indicating we have created a new Git repository
+		</code>
+		</pre>
+      </div>
+
+	  
+
+	 <script>
+		function myFunction() {
+  		var x = document.getElementById("myDIV");
+  		if (x.style.display === "none") {
+    	x.style.display = "block";
+  		} else {
+    	x.style.display = "none";
+  		}
+		}
+	  </script>
+	  
+	  <p> Although you successfully created a second repository within another repository this can lead to confusion. We need to remove the nested repository, to do this we shall need to undo the <strong><em>git init</em></strong> command within your <strong><em>secondRepo</em></strong> subfolder.</p>
+	  <p> To do this we can just delete the files or subdirectory we created. Although, that might be very easy to do you need to be careful cause if you delete a file or folder that is not being tracked by <strong><em>git</em></strong>, then you shall not be able to recover it using git.</p>
+	  <p> To remove files you can use the bash command <strong><em>rm</em></strong> followed by the filename. Similarly you can use the <strong><em>rm</em></strong> command to remove directories using the <strong><em>rm -r Directory_Name</em></strong> or <strong><em>rm -rf Directory_Name</em></strong></p>
+	  <h4>Task 2.2</h4>
+	  <p>Remove the <strong><em>secondRepo</em></strong> directory.</p>
 	  </div>		
   </section>
 </div>
