@@ -155,6 +155,71 @@
 	  <p> To remove files you can use the bash command <strong><em>rm</em></strong> followed by the filename. Similarly you can use the <strong><em>rm</em></strong> command to remove directories using the <strong><em>rm -r Directory_Name</em></strong> or <strong><em>rm -rf Directory_Name</em></strong></p>
 	  <h4>Task 2.2</h4>
 	  <p>Remove the <strong><em>secondRepo</em></strong> directory.</p>
+	  
+	  <h3>3. Adding and Tracking Changes in Git</h3>
+	  <p>Before proceeding, let's confirm that we are currently in the correct directory, which should be the <strong><em>firstRepo</em></strong> directory.</p>
+	  
+	  <pre>
+	  	<code>
+			$ cd ~/Desktop/firstRepo
+		</code>
+	  </pre>
+	  
+	  <p>Next, we will create a file named <strong><em>appdev_assesment1.txt</em></strong> and add information regarding an application. We will use the nano editor to edit the file, but you can use any editor of your preference. Note that the command to create or edit a file may vary depending on the editor you choose, and it may not be the same as the core.editor you previously set.</p>
+	  <pre>
+	  	<code>
+			$ nano appdev_assesment1.txt
+		</code>
+	  </pre>
+	  <p>Let us type some text within like:</p>
+		  
+	  <center><img src="images/apptext.jpg" alt=""></center> 
+	  
+	  <p>Exit using <strong>Control+X</strong> and say yes on saving it. Verify that the file has been created by using the listing command <strong><em>ls</em></strong>. To see the contents of the text file you can use the command <strong><em>cat</em></strong></p>.
+	  
+	  <pre>
+	  	<code>
+			MINGW64 ~/Desktop/firstRepo (main)
+			$ cat appdev_assesment1.txt
+			1. Application Reasoning
+			
+			This application will change the world
+
+		</code>
+	  </pre>
+	  <p> Let us check the status of our repository using the status command:</p>
+	  
+	  <center><img src="images/status1.jpg" alt=""></center>
+	  
+	  <p>You are now seeing a message about “untracked files” which means that there is a file in the repository directory that Git is not keeping track of. We can tell Git to track a file using <strong><em></em>git add</strong>. Once you have added it you can run the status command:</p>
+	  
+	  <center><img src="images/status2.jpg" alt=""></center>
+	  
+	  <p>Git has now been <strong>informed</strong> that it should track the text file <strong><em>appdev_assesment1.txt</em></strong>. This does not mean that it is actually tracking it yet. This would only happen when we ask git to <strong>commit</strong> that change. You can do this by running the command:</p>
+	  
+	  <pre>
+	  	<code>
+			MINGW64 ~/Desktop/test (main)
+			$ git commit -m "Strating point of mu assessment"
+			[master (root-commit) 9127744] Strating point of my assessment
+ 			1 file changed, 3 insertions(+)
+ 			create mode 100644 appdev_assesment1.txt
+
+		</code>
+	  </pre>
+	  
+	  <p>When we use the command <strong><em>git commit</em></strong>, Git takes all the changes that we have told it to save by using <strong><em>git add</em></strong> and stores a permanent copy in the special .git directory. This permanent copy is called a commit and is identified by a unique identifier such as "9127744". We use the "-m" flag to add a brief, descriptive, and specific message that will help us remember what we did and why later on. If we don't use the -m flag, Git will come up with an error or in some cases it shall open up an editor to write one. A good commit message should start with a summary of the changes made in the commit, and should explain why the changes were made and what impact they will have. If we run <strong><em>git status</em></strong> now, it will show the current status of our repository.</p>
+	  
+	  <pre>
+	  	<code>
+			$ git status
+			On branch main
+			nothing to commit, working tree clean
+
+		</code>
+	  </pre>
+
+
 	  </div>		
   </section>
 </div>
