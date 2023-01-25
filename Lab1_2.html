@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab1_2</title>
+<link href="css/simpleGridTemplate.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Main Container -->
+<div class="container"> 
+  <!-- Header -->
+  <header class="header">
+    <h4 class="logo">U10787 - Lab 1.2 - Version Control with Git and Github</h4>
+  </header>
+  <section class="intro">
+    <div class="body">
+		  <h3>1. Remote Repositories</h3>
+		<p> 
+			  Version control truly shines when multiple people are working together. The necessary tools are already in place, the only thing missing is the ability to transfer changes from one repository to another. Systems like Git enable us to move work between any two repositories, but it's most practical to use one central repository that is accessible on the web instead of someone's local computer. Many programmers utilize hosting services like GitHub, Bitbucket, or GitLab to maintain the main copies of their repositories. We will discuss the advantages and disadvantages of this approach. To start, we will share the changes made to our current project with others by creating a remote repository that will be linked to our local repository.
+		  </p>
+		
+		<h3>Create a remote repository in GitHub</h3>
+		<p> To access github you would need first to gain access. <strong>DO NOT GO TO THE MAIN GITHUB WEBSITE</strong> instead go to <a href="http://github.canterbury.ac.uk">http://github.canterbury.ac.uk</a>. Use your university credentials to sign in, and use your univeristy username.</p>
+		
+		<p>Once you have logged in to GitHub, click on the icon in the top right corner to create a new repository called firstRepo.</p>
+		
+		<center><img src="images/githubnewrepo.jpg" alt="" width="1000"></center> 
+		
+		<p>You will need to connect this to a local repository so it needs to be empty. Leave “Initialize this repository with a README” unchecked, and keep “None” as options for both “Add .gitignore” and “Add a license.” To find more about customisation of your repository see: <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository">Customizing your repository</a></p>
+		
+		<center><img src="images/githubrepocreationpage.jpg" alt=""></center> 
+		
+		<p>As soon as the repository is created, GitHub displays a page with a URL and some information on how to configure your local repository:</p>
+		
+		<center><img src="images/firstRepoinstructions.jpg" alt=""></center> 
+		
+		<h3>2. Access to GitHub Repositories</h3>
+		<p>To be able to access your GitHub repo from git you would either need to authenticate to GitHub. To achieve this you can either use SSH or create a personal access token. If you are using the shared PCs of the university the best option is to create a token. If you are using a machine at home you can use SSH. For detailed information on creating a token or ssh key see the following links: <a href="https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">Personal Tokens</a> and <a href="https://docs.github.com/en/enterprise-server@3.4/authentication/connecting-to-github-with-ssh">SSH connection to GitHub</a> </p>
+		
+		<h3>3. Connecting to your remote repository</h3>
+		<p>We can now connect the two repositories together, the local one and the remote one.</p>
+		<p>Copy that URL from the browser, go into the local firstRepo repository, and run this command: </p>
+		
+		<pre>
+	  	<code>
+			$ git remote add origin https://github.com/lourman/firstRepo.git
+		</code>
+	  </pre>
+		
+		<p>Make sure to use the URL for your repository rather than lourman’s: the only difference should be your username instead of lourman.</p>
+		<p><strong><em>origin</em></strong> is a local name used to refer to the remote repository. It could be called anything, but origin is a convention that is often used by default in git and GitHub, so it’s helpful to stick with this unless there’s a reason not to. We can check that the command has worked by running <strong><em>git remote -v</em></strong>:</p>
+		
+		<pre>
+	  	<code>
+			$ git remote -v
+			origin  https://github.com/lourman/firstRepo.git (fetch)
+			origin  https://github.com/lourman/firstRepo.git (push)
+		</code>
+	  </pre>
+		
+	  <p>To finish with connecting to our local repository to the remote we need to push all our local commits to the remote. To do this write the following:</p>
+		
+		<pre>
+	  	<code>
+			$ git push origin main
+			Enumerating objects: 10, done.
+			Counting objects: 100% (10/10), done.
+			Delta compression using up to 4 threads
+			Compressing objects: 100% (6/6), done.
+			Writing objects: 100% (10/10), 965 bytes | 482.00 KiB/s, done.
+			Total 10 (delta 1), reused 0 (delta 0), pack-reused 0
+			remote: Resolving deltas: 100% (1/1), done.
+			To https://github.com/lourman/firstRepo.git
+			 * [new branch]      main -> main
+		</code>
+	  </pre>
+		
+		<p>You shall now be able to refresh your github webpage and see all your commits. The last step we need to talk about is when you are using multiple machines or multiple people are updating the remote repository. To update our local repository with the latest copy of the repository we can use the command <strong><em>git pull origin main</em></strong>.</p>
+		
+		<h3>4. Using Git and GitHub from Visual Studio</h3>
+		
+		<p>Visual Studio, is a popular development environment for programming, and it integrates with Git, making version control of code more convenient. With Visual Studio, you can create a project to manage multiple related files and use Git to keep track of changes, revert to previous versions, and collaborate with others. To use Git in Visual Studio, you simply need to make sure you have authenticated within Visual Studio to GitHub.</p>
+		<p><a href="https://github.com/github/VisualStudio/blob/master/docs/getting-started/authenticating-to-github.md">Click here to see how to login to GitHub via VS.</a></p>
+		
+		<p>You can find all relavent documentation via Microsoft <a href="https://learn.microsoft.com/en-gb/visualstudio/version-control/?wt.mc_id=visualstudio_vscomwebsite_webpage_cnl&view=vs-2022">here</a>.</p>
+	</div>		
+  </section>
+</div>
+</body>
+</html>
