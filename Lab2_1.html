@@ -1,0 +1,372 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab1</title>
+<link href="css/simpleGridTemplate.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Main Container -->
+<div class="container"> 
+  <!-- Header -->
+  <header class="header">
+    <h4 class="logo">U10787 - Lab 2.1 - Introduction to Classes and Objects</h4>
+  </header>
+  <section class="intro">
+    <div class="body">
+		  <h3>1. Creating a class</h3>
+		  <p> 
+			  To create a class you need to use the keyword class followed by curly brackets. Here is an example of a class syntax.
+		  </p>
+		  <h4>1.1 Example</h4>
+
+		<pre>
+		<code>
+ <span style="color: #65E993">//[access modifier] - [class] - [identifier]</span>
+ <span style="color: #3049EC">public class</span> <span style="color: #7CE6F4">MyClass</span>
+ {
+ 	<span style="color: #65E993">// Class members:</span> 
+	<span style="color: #65E993">// Fields, properties, methods and events go here...</span> 
+ }
+		</code>
+		</pre>
+		<h4>1.2 Example Explanation</h4>
+		<p>The access level that precedes the class keyword should be discussed later on during our course, in our case we use public which means that anyone can create instances of this class. The name that you are going to give the class must be a valid C# identifier name. More on valid class identifiers in C# click <a href="https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names">here</a></p>
+		<h4>Task 1.1</h4>
+		<p>Configure your git account using your <strong>own name and email address instead of mine</strong>. This user name and email will be associated with your subsequent Git activity, which means that any changes pushed to GitHub, BitBucket, GitLab or another Git host server after this task will include this information.</p>
+
+		<p>
+			The user name and email you configure will be linked to all your future Git actions. This means that any changes you push to a Git host server, such as GitHub will include this information. It's important to use the same email address for this configuration as the one you used to set up your GitHub account (your university login). If you are concerned about privacy, you can follow GitHub's instructions for keeping your email address private.
+		</p>
+
+		<p>
+			All source file changes reside on what we call a “branch.”. The main branch in a Git repo is called "main" and is the repository of all the code and other files that are pushed to the repository by users. It is the main branch of the version control system, and it contains the most recent version of the code. All the other branches are based on this main branch and their changes can be merged into the main branch.
+		</p>
+			
+		<p>
+			Prior to 2020 the "main" branch was called "master", but the term is regarded to be racist and linked to human slavery. Thus, the software development community has moved to adopt a more inclusive language. In 2020, many popular Git code hosting services, such as GitHub and GitLab, began naming their default branch main rather than the traditional master. Though Git has not yet adopted this change, local repositories can easily be configured to use "main" as their default branch, allowing them to match the same name as most cloud services.
+		</p>
+		
+		<h4>Task 1.2</h4>
+		<p>
+			To change the name of the main branch you would need to update the "init.defaultBranch" value defaults from "master" to "main". using the git command "git config" change globally the defaule main branch to "main".  		
+			
+		</p>
+			You should have noticed that all commands that you have ran above only need to be run once and the flag "--global" tells Git to use the settings for every project, in your user account, on this computer.
+			You can check your settings at any time by running the command:		
+		</p>
+	  	<pre>
+		<code>
+			$ git config --list			
+		</code>
+		</pre>
+	  
+	  	<h4>Optional Task</h4>
+	  	<p> The first time we introduced git in the university we had to setup a proxy, although we are no longer in need of these. We have seen that in some accounts the proxies are setup. Check you settings as mentioned above and verify that no proxy has been set. If a proxy has been set unset it using the following commands (if there are capitals please use capitals):</p>
+	  	<pre>
+		<code>
+			$ git config --global --unset http.proxy
+			$ git config --global --unset https.proxy		
+		</code>
+		</pre>
+	  
+	  	<p>In case that you are setting up git at your home computer and you need to go through a proxy then to set the proxy you would need to use the following commands:</p>
+	  	<pre>
+		<code>
+			$ git config --global http.proxy proxy-url
+			$ git config --global https.proxy proxy-url		
+		</code>
+		</pre>
+	  	<h3>2. Creating a Git Repository</h3>
+	    <p>Now that you have configured git on your computer you can proceed to create your first Git repository. To do that you would need first to navigate to the computer folder you wish to use for storing your git repository. Let us assume we need to go and create a git repository in a new folder in the desktop. So we shall first need to navigate to the desktop, then create the directory and eventually go within that directory:</p>
+	  
+	  <pre>
+		<code>
+			$ cd ~/Desktop
+			$ mkdir firstRepo
+			$ cd firstRepo		
+		</code>
+		</pre>
+	  <p> We shall now make Git create our first repository:</p>
+	  <pre>
+		<code>
+			$ git init	
+		</code>
+		</pre>
+	  <p>It is crucial to understand that executing <strong><em>git init</em></strong> will establish a repository that can contain subfolders and their associated files - there is no requirement to establish multiple repositories within the <strong><em>firstRepo</em></strong> repository, whether subdirectories are initially present or added later. Additionally, it is important to keep in mind that the creation of the <strong><em>firstRepo</em></strong> directory and its initialization as a repository are two distinct steps.</p>
+	  <p>If we use the <strong><em>ls</em></strong> command to display the contents of the directory, it may appear that no changes have occurred. But if we use the <strong><em>-a</em></strong> flag then we shall see that a hidden directory has been created.</p>
+	  <pre>
+		<code>
+			PC MINGW64 ~/Desktop/firstRepo (master)
+			$ ls
+
+			PC MINGW64 ~/Desktop/firstRepo (master)
+			$ ls -a
+			./  ../  .git/	
+		</code>
+		</pre>
+	  <p>Git employs the use of this unique subfolder to keep track of all information related to the project, comprising of the files and subdirectories inside the project's directory. It's worth noting that if we delete the <strong><em>.git</em></strong> subfolder, we'll lose the project's history and we no longer have a repository.</p>
+	  <p>Following that, we'll alter the default branch to be referred to as <strong><em>main</em></strong>. This may already be the default branch, depending on your git settings and version. We should also try and see the status of repository after the change:</p>
+	  <pre>
+	  	<code>
+			PC MINGW64 ~/Desktop/firstRepo (master)
+			$ git checkout -b main
+			Switched to a new branch 'main'
+
+			PC MINGW64 ~/Desktop/firstRepo (main)
+			$ git status
+			On branch main
+
+			No commits yet nothing to commit (create/copy files and use "git add" to track)
+		</code>
+		</pre>
+	  <h4>Task 2.1</h4>
+	  <p>Close Git Bash and reopen it. Now navigate back to your first repository and create a subfolder within your git repository called secondRepo. Go within that subfolder and initialise a new repository.</p>
+	  <button onclick="myFunction()">Solution</button>
+
+	  <div style="display: none;" id="myDIV">
+	  	<pre>
+	  	<code>
+			$ cd ~/Desktop        # return to Desktop directory
+			$ cd firstRepo        # go into firstRepo directory, which is already a Git repository
+			$ ls -a               # ensure the .git subdirectory is still present in the firstRepo directory
+			$ mkdir secondRepo    # make a subdirectory firstRepo/secondRepo
+			$ cd secondRepo       # go into secondRepo subdirectory
+			$ git init            # make the secondRepo subdirectory a Git repository
+			$ ls -a               # ensure the .git subdirectory is present indicating we have created a new Git repository
+		</code>
+		</pre>
+      </div>
+
+	  
+
+	 <script>
+		function myFunction() {
+  		var x = document.getElementById("myDIV");
+  		if (x.style.display === "none") {
+    	x.style.display = "block";
+  		} else {
+    	x.style.display = "none";
+  		}
+		}
+	  </script>
+	  
+	  <p> Although you successfully created a second repository within another repository this can lead to confusion. We need to remove the nested repository, to do this we shall need to undo the <strong><em>git init</em></strong> command within your <strong><em>secondRepo</em></strong> subfolder.</p>
+	  <p> To do this we can just delete the files or subdirectory we created. Although, that might be very easy to do you need to be careful cause if you delete a file or folder that is not being tracked by <strong><em>git</em></strong>, then you shall not be able to recover it using git.</p>
+	  <p> To remove files you can use the bash command <strong><em>rm</em></strong> followed by the filename. Similarly you can use the <strong><em>rm</em></strong> command to remove directories using the <strong><em>rm -r Directory_Name</em></strong> or <strong><em>rm -rf Directory_Name</em></strong></p>
+	  <h4>Task 2.2</h4>
+	  <p>Remove the <strong><em>secondRepo</em></strong> directory.</p>
+	  
+	  <h3>3. Adding and Tracking Changes in Git</h3>
+	  <p>Before proceeding, let's confirm that we are currently in the correct directory, which should be the <strong><em>firstRepo</em></strong> directory.</p>
+	  
+	  <pre>
+	  	<code>
+			$ cd ~/Desktop/firstRepo
+		</code>
+	  </pre>
+	  
+	  <p>Next, we will create a file named <strong><em>appdev_assesment1.txt</em></strong> and add information regarding an application. We will use the nano editor to edit the file, but you can use any editor of your preference. Note that the command to create or edit a file may vary depending on the editor you choose, and it may not be the same as the core.editor you previously set.</p>
+	  <pre>
+	  	<code>
+			$ nano appdev_assesment1.txt
+		</code>
+	  </pre>
+	  <p>Let us type some text within like:</p>
+		  
+	  <center><img src="images/apptext.jpg" alt=""></center> 
+	  
+	  <p>Exit using <strong>Control+X</strong> and say yes on saving it. Verify that the file has been created by using the listing command <strong><em>ls</em></strong>. To see the contents of the text file you can use the command <strong><em>cat</em></strong></p>.
+	  
+	  <pre>
+	  	<code>
+			MINGW64 ~/Desktop/firstRepo (main)
+			$ cat appdev_assesment1.txt
+			1. Application Reasoning
+			
+			This application will change the world
+
+		</code>
+	  </pre>
+	  <p> Let us check the status of our repository using the status command:</p>
+	  
+	  <center><img src="images/status1.jpg" alt=""></center>
+	  
+	  <p>You are now seeing a message about “untracked files” which means that there is a file in the repository directory that Git is not keeping track of. We can tell Git to track a file using <strong><em></em>git add</strong>. Once you have added it you can run the status command:</p>
+	  
+	  <center><img src="images/status2.jpg" alt=""></center>
+	  
+	  <p>Git has now been <strong>informed</strong> that it should track the text file <strong><em>appdev_assesment1.txt</em></strong>. This does not mean that it is actually tracking it yet. This would only happen when we ask git to <strong>commit</strong> that change. You can do this by running the command:</p>
+	  
+	  <pre>
+	  	<code>
+			MINGW64 ~/Desktop/test (main)
+			$ git commit -m "Starting point of my assessment"
+			[master (root-commit) 9127744] Strating point of my assessment
+ 			1 file changed, 3 insertions(+)
+ 			create mode 100644 appdev_assesment1.txt
+
+		</code>
+	  </pre>
+	  
+	  <p>When we use the command <strong><em>git commit</em></strong>, Git takes all the changes that we have told it to save by using <strong><em>git add</em></strong> and stores a permanent copy in the special .git directory. This permanent copy is called a commit and is identified by a unique identifier such as "9127744". We use the "-m" flag to add a brief, descriptive, and specific message that will help us remember what we did and why later on. If we don't use the -m flag, Git will come up with an error or in some cases it shall open up an editor to write one. A good commit message should start with a summary of the changes made in the commit, and should explain why the changes were made and what impact they will have. If we run <strong><em>git status</em></strong> now, it will show the current status of our repository.</p>
+	  
+	  <pre>
+	  	<code>
+			$ git status
+			On branch main
+			nothing to commit, working tree clean
+
+		</code>
+	  </pre>
+
+	  <p>Git informs us that there are no more changes that we need to commit and there are no potential new files to be added. At this point it might be good for us to see another command of git called <strong><em>git log</em></strong>. This will list commits / changes made in the repository given in reverse chronological order by default. Other information that are included are the author and the message supplied.</p>
+	  
+	  <center><img src="images/gitlog.png" alt=""></center>
+	  
+	  <p>You now need to progress in your assesment and need to update you text file. You would need to edit your txt file.</p>
+	  
+	  	  <pre>
+	  	<code>
+			$ nano appdev_assesment1.txt
+			
+			$ cat appdev_assesment1.txt
+			1. Application Reasoning
+
+			This application will change the world.
+
+			2. Application Development
+
+			Need to use C# to develop this application.
+		</code>
+	  </pre>
+
+	  <p>Run <strong><em>git status</em></strong> and see how git informs you that the file has been modified.</p>
+
+	  <center><img src="images/status3.jpg" alt=""></center>
+	  
+	  <p>The crucial statement is <strong><em>no changes added to commit</em></strong>, indicating that although we have modified the file, we have not yet informed Git of our intentions to save those changes through <strong><em>git add</em></strong>, nor have we saved them through <strong><em>git commit</em></strong>. We should now proceed to do so, as it is a good habit to review our changes before saving them by using the command <strong><em>git diff</em></strong>, which displays the differences between the current state of the file and the previously saved version.</p>
+	  
+	  <center><img src="images/diff.jpg" alt=""></center>
+	  
+	  <p>
+		  The output appears confusing because it is a series of instructions for tools such as editors and patch, which are used to reconstruct a single file from the other. When broken down:
+		  <li>
+			  The first line informs us that Git is producing output similar to the Unix <strong>diff</strong> command, which compares the old and new versions of the file.
+		  </li>
+		  <li>
+			  The second line specifies which versions of the file are being compared by Git, with <strong>ee4453c</strong> and <strong>47329ea</strong> being unique labels generated by the computer for those versions.
+		  </li>
+		  <li>
+			  The third and fourth lines repeat the name of the file that is being modified.
+		  </li>
+		  <li>
+			  The remaining lines are the most important as they display the actual differences and the lines on which they appear, with the <strong>+</strong> symbol in the first column indicating where a line has been added.
+		  </li>		     
+	  </p>
+	  <p>Let us try and commit.</p>
+	  
+	  <center><img src="images/secondcommit.jpg" alt=""></center>
+	  
+	  <p>Trying to commit without adding the file fails.</p>
+	  
+	  <p>Git requires that files be included in the set intended for committing before any actual committing takes place. This allows for committing changes in stages, and capturing changes in smaller, logical portions rather than just committing large batches. For example, if we are adding citations to relevant research in our thesis, we may want to commit those additions and the corresponding bibliography entries, but not commit the work we have done on drafting the conclusion, as it is not yet finished. To facilitate this, Git has a designated area called the staging area, where it keeps track of files that have been added to the current set of changes but have not yet been committed.</p>
+	  
+	  <h4>3.1 Directories</h4>
+	  
+	  <p>You have now seen how git tracks the changes in files. An important aspect in git is to understand that it does not keep track of directories. It keeps track of files that are located within directories. To verify this create a direcoty withing firstRepo and see if the status for git states about changes. Then try and add that directory and check the status again.</p>
+	  
+	  <pre>
+	  	<code>
+			$ mkdir dirChange
+			MINGW64 ~/Desktop/firstRepo (main)
+			$ git status
+			On branch main
+			nothing to commit, working tree clean
+
+			MINGW64 ~/Desktop/firstRepo (main)
+			$ git add dirChange/
+
+			MINGW64 ~/Desktop/firstRepo (main)
+			$ git status
+			On branch main
+			nothing to commit, working tree clean
+		</code>
+	  </pre>
+
+		<p> Trying to add a directory or create one has not been detected by git. Try to add a file within that directory and then add the directory.</p>
+	  
+	  <pre>
+	  	<code>
+			$ nano dirChange/file1.txt
+			MINGW64 ~/Desktop/firstRepo (main)
+			$ git add dirChange/
+			warning: in the working copy of 'dirChange/file1.txt', LF will be replaced by CRLF the next time Git touches it
+
+			MINGW64 ~/Desktop/firstRepo (main)
+			$ git status
+			On branch main
+			Changes to be committed:
+  				(use "git restore --staged <file>..." to unstage)
+        			new file:   dirChange/file1.txt
+
+			MINGW64 ~/Desktop/firstRepo (main)
+			$ git commit -m "Added a directory with files to my repo"
+			[main 2b7db0b] Added a directory with files to my repo
+ 			1 file changed, 2 insertions(+)
+ 			create mode 100644 dirChange/file1.txt
+		</code>
+	  </pre>
+
+	  <h3>Task 3.1</h3>
+
+		<p><li>Create a new git repository to hold your CV. </li>
+		<li>Write a text file within that holds your cv.</li>
+		<li>Commit your changes.</li>
+		<li>Modify your CV by adding an additional work experience.</li>
+		<li>Add a new file called myself.txt for your biography inside a directory named bio.</li>
+		<li>Check the differences on your cv only.</li>
+		<li>Commit all changes.</li>
+	  	</p>
+		
+		<button onclick="myFunction2()">Solution</button>
+
+	  <div style="display: none;" id="myDIV2">
+	  	<pre>
+	  	<code>
+			$ cd c:/temp                                       # Go the place where I want to create my repo
+			$ mkdir cv                                         # Create "cv" directory
+			$ cd cv/                                           # Go inside the directory 
+			$ git init                                         # Initialise the repo
+			$ git checkout -b main                             # Change from master to main
+			$ nano cv.txt                                      # Create my cv text file
+			$ git add cv.txt                                   # Stage my changes to git
+			$ git commit -m "Add my latest CV"                 # Commit my changes
+			$ nano cv.txt                                      # Update my CV
+			$ mkdir bio                                        # Create a "bio" directory
+			$ nano bio/myself.txt                              # Create a file to hold my biography
+			$ git diff cv.txt                                  # Check the changes on my cv from my last commit
+			$ git add --all                                    # Stage all files to git
+			$ git commit -m "Updated CV and added my bio"      # Commit my changes
+		</code>
+		</pre>
+      </div>
+
+	 <script>
+		function myFunction2() {
+  		var x = document.getElementById("myDIV2");
+  		if (x.style.display === "none") {
+    	x.style.display = "block";
+  		} else {
+    	x.style.display = "none";
+  		}
+		}
+	  </script>
+	  </div>		
+  </section>
+</div>
+</body>
+</html>
