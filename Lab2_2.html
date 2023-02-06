@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lab2_1</title>
+<link href="css/simpleGridTemplate.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Main Container -->
+<div class="container"> 
+  <!-- Header -->
+  <header class="header">
+    <h4 class="logo">U10787 - Lab 2.2 - More on Classes</h4>
+  </header>
+  <section class="intro">
+    <div class="body">
+		  <h3>Task 1 - Modifying a class</h3>
+		  <p>Clone the code from: . Modify the class Account to provide a Withdraw method
+that withdraws money from an Account. Ensure that the withdrawal amount doesn’t exceed the balance.
+If it does, the balance should not be changed and the method should display a message indicating
+"Withdrawal amount exceeded account balance." Modify the class test code (Before the class declaration) to test method Withdraw.</p>
+		  <h3>Task 1.2 - Removing duplicate code</h3>
+		  <p>In the AccountTest class, at the start the class test code contains six statements that each display an Account object’s Name and Balance. Study these statements and you’ll notice that they differ only in the Account object being manipulated—account1 or account2. In this exercise, you’ll define a new DisplayAccount method that contains one copy of that output statement. The method’s parameter
+will be an Account object and the method will output the object’s Name and Balance. You’ll then replace the six duplicated statements with calls to DisplayAccount, passing as an argument
+the specific Account object to output.</p>
+<p>Modify the output code to declare the following DisplayAccount method:</p>
+
+		<pre>
+		<code>
+ void DisplayAccount(Account accountToDisplay)
+{
+ // place the statement that displays
+ // accountToDisplay's Name and Balance here
+}
+		</code>
+		</pre>
+		<p>Replace the comment in the member function’s body with a statement that displays accountToDisplay’s
+Name and Balance.</p>
+<p>Once you’ve completed DisplayAccount’s declaration, modify your class test code to replace the statements
+that display each Account’s Name and Balance with calls to DisplayAccount—each receiving as its
+argument the account1 or account2 object, as appropriate. Then, test the updated AccountTest
+class to ensure that it produces the same output as before.</p>
+
+<h3>Task 3 - Make your own class</h3>
+<p>Create a new console project that contains a class called <strong>Training</strong> that includes four pieces of information as
+auto implemented properties—the training type (type string), the number of trainees (type int),
+class timings (type DateTime) and charges (type decimal). Your class should have a constructor that
+initializes the four automatic properties and assumes that the values provided are correct. Provide a
+method DisplayDetails that displays the training type, number of trainees, class timing and
+charges (in GBP) separated by tabs. Write a test global method named TrainingTest that demonstrates class
+Testing's capabilities.</p>
+<h3>Task 4 - Make your own application using classes</h3>
+<p>Clone the solution from: . In this exercise, you will design a HealthRecord class for
+a person. The class should include members for the person’s first name, last name,
+gender at birth, date of birth, height and weight. Your class should have a constructor
+that receives all of these data. For each member provide a property with appropriate
+accessors. The class should contain a method to calculate and return the person’s age in
+years and a method to calculate and return a person’s BMI. Also the class should have
+a method to calculate the maximum heart rate depending on the age. The equation for
+obtaining the maximum heart rate is:
+Maximum Heart Rate at 100% = (220 - age (in years)) beats per minute
+To test your class use the form provided in the project. You do not need to add any
+more controls. You only need to add functionality for the controls that already exist.</p>
+	  </div>		
+  </section>
+</div>
+</body>
+</html>
