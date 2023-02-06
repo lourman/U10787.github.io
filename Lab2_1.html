@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lab1</title>
+<title>Lab2_1</title>
 <link href="css/simpleGridTemplate.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -105,6 +105,366 @@
  }	
 		</code>
 		</pre>
+<h3>4. Properties</h3>
+	  <p>A property is a member that provides a flexible mechanism to read, write, or compute the value of a private field. Properties can be used as if they are public data members, but they are actually special methods called <strong>accessors</strong>. This enables data to be accessed easily and still helps promote the safety and flexibility of methods.</p>
+	  <p>A property enables a class to expose a public way of getting and setting values, while hiding implementation or verification code.</p>
+	  <p>A simple way of implementing a property involves using a private field for storing and a public property used to set and retrieve the field value. The get accessor returns the value of the private f ield, and the set accessor may perform some data validation before assigning a value to the private field. Both accessors may also perform some conversion or computation on the data before it is stored or returned.</p>
+	  <h4>4.1 Example</h4>
+	  	  <pre>
+		<code>
+  class Module 
+  { 
+   private double assignment1Mark; // weighted mark for assignment 1 
+   private double assignment2Mark; // weighted mark for assignment 2 
+   private int assignment1Weigthing; // weighting of final mark for assignment 1 
+   private int assignment2Weigthing; // weighting of final mark for assignment 2 
+   
+   public double MarkAssignment1 
+   { 
+   	get
+	{
+	  return (assignment1Mark * 100) / assignment1Weighting;
+	}
+	set
+	{
+	  if (value < 0 || value > 100) 
+	  { 
+	    mark = 0; 
+		// Need to inform the user with the following message: 
+		// "Mark must be between 0 and 100."); 
+	  } 
+	  assignment1Mark = value * assignment1Weigthing;
+	}
+	
+	public double FinalMark 
+	{ 
+	  get 
+	  {
+	    return assignment1Mark + assignment2Mark;
+	  }
+	}
+  }
+	
+  Module BRP = new Module(); 
+  
+  // When I assign the property with a value it causes the 'set' accessor to be called. 
+  BRP.MarkAssignment1 = 50.3; 
+  BRP.MarkAssignment2 = 60.0; 
+  
+  // When I read the property it causes the 'get' accessor to be called. 
+  Console.WriteLine(BRP.FinalMark);	
+		</code>
+		</pre>
+		<h4>4.2 Example Explanation</h4>
+		<p>In this example, the Module class represents a module with two assignments that have different weightings. Internally, the class stores the <strong>weighted</strong> marks of each 4assessment in percentage using the private fields named assignment1Mark and assignment2Mark. A read-write property named MarkAssignment1 allows the user to specify and read the mark of assignment 1 out of 100%. Both the get and the set accessors perform the necessary conversion between weighted and unweighted mark. In addition, the set accessor validates the data if the mark provided is invalid.</p>
+		
+		<h4>Task 5</h4>
+		<p>Create appropriate properties for the 3 private fields inside the class.You should name the properties GetSimType, GetMemorySizeInBytes, GetEID and SimActivated.</p>
+		<pre>
+		<code>
+ class SimCard
+ {
+   // 0 for a standard SIM card (25x15mm) 
+   // 1 for a micro SIM card (15x11mm) 
+   // 2 for a nano SIM card (12.3x8.8mm) 
+   // 3 for a embedded SIM card (6x5mm)
+   int simType; 
+   
+   // The size of the the sim memory in bytes. This cannot be altered either
+   int memorySizeinBytes; 
+   
+   // This is embedded on the sim card generation and cannot be altered 
+   string eid; 
+   
+   // Have you received bool IsSimActivated; 
+   public SimCard()
+   { 
+     simType = 0; 
+	 memorySizeinBytes = 256000; 
+	 eid = "ID24425J4GKSUK547292KK4"; 
+   }
+ }
+ 
+ SimCard sim = new SimCard();
+ 
+ switch (sim.GetSimType)
+ { 
+   case 0: 
+     Console.WriteLine("Standard Sim");
+	 break;
+   case 1: 
+     Console.WriteLine("Micro Sim");
+	 break;
+   case 2:
+     Console.WriteLine("nano Sim"); 
+	 break; 
+   case 3: 
+     Console.WriteLine("ESim"); 
+	 break;
+ } 
+ 
+ Console.WriteLine(sim.GetMemorySizeInBytes);
+ Console.WriteLine(sim.GetEID); 
+ 
+ sim.SimActivated = true;
+ 
+ if (sim.SimActivated)
+ { 
+   Console.WriteLine("SIM card activated");
+ } 
+ else 
+ { 
+   Console.WriteLine("SIM card not activated"); 
+ }
+		</code>
+		</pre>
+<h3>5 Auto-implemented properties</h3>
+<p>In many situations you want a simple field to be just assigned and retrieved without including any additional logic. For these situations you use auto-implemented properties.</p>
+<p>If a property has both a get and a set, both must be auto-implemented. You define an auto8implemented property by using the get and set keywords without providing any implementation. The following example repeats the previous one, except that FirstName, MiddleName and LastName are auto-implemented properties.</p>
+
+<h4>5.1 Example</h4>
+<pre>
+<code>
+ public class Student 
+ { 
+   public string FirstName { get; set;} 
+   public string MiddleName { get; set;} 
+   public string LastName { get; set;} 
+   
+   public string FullName 
+   {
+     get 
+	 { 
+	   return $"{FirstName} {MiddleName} {LastName}"; 
+	 }
+   }
+ }
+ 
+ Student student = new Student();
+ 
+ student.FirstName = "Alex"; 
+ student.MiddleName = ""; 
+ student.LastName = "Louridas"; 
+ 
+ Console.WriteLine(student.FullName);
+</code>
+</pre>
+<h4>5.2 Example Explanation</h4>
+<p>In this example, properties were auto-implemented. There are no fields for first, middle and last name only the properties. You can still use the properties within the class in other methods and properties as variables as shown in the FullName property.</p>
+<h4>5.2 Task 4</h4>
+<p>Rewrite the properties you created in the previous exercises by auto-implementing them. The properties names should remain the same as GetSimType, GetMemorySizeInBytes, GetEID and SimActivated</p>
+
+<pre>
+<code>
+SimCard sim = new SimCard();
+
+switch (sim.GetSimType) 
+{ 
+    case 0: 
+        Console.WriteLine("Standard Sim"); 
+        break; 
+    case 1: 
+        Console.WriteLine("Micro Sim"); 
+        break; 
+    case 2: 
+        Console.WriteLine("nano Sim"); 
+        break; 
+    case 3: 
+        Console.WriteLine("ESim"); 
+        break; 
+} 
+
+Console.WriteLine(sim.GetMemorySizeInBytes); 
+Console.WriteLine(sim.GetEID); 
+
+sim.SimActivated = true; 
+
+
+if (sim.SimActivated)
+{
+    Console.WriteLine("SIM card activated");
+}
+else
+{
+    Console.WriteLine("SIM card not activated");
+}
+
+class SimCard
+{
+    // 0 for a standard SIM card (25x15mm) 
+    // 1 for a micro SIM card (15x11mm) 
+    // 2 for a nano SIM card (12.3x8.8mm)
+    // 3 for a embedded SIM card (6x5mm)
+    int simType;
+
+    // The size of the the sim memory in bytes. This cannot be altered either
+    int memorySizeinBytes;
+
+    // This is embedded on the sim card generation and cannot be altered
+    string eid;
+
+    // Have you received
+    bool IsSimActivated;
+    public SimCard()
+    {
+        simType = 0;
+        memorySizeinBytes = 256000;
+        eid = "ID24425J4GKSUK547292KK4";
+    }
+}
+</code>
+</pre>
+
+<h3>6. Methods</h3>
+<p>Amethodis acode block that contains a series of statements. A program causes the statements to be executed by calling the method and specifying any required method arguments.</p>
+<p>Methods are declared in a class by specifying the access level such as public or private the return value type, the name of the method, and any method parameters. These parts together are the signature of the method.</p>
+
+<h4>6.1 Example</h4>
+<pre>
+<code>
+Student student = new Student();
+
+student.FirstName = "Alex";
+student.MiddleName = "";
+student.LastName = "Louridas";
+System.Console.WriteLine(student.FullName);
+if (student.AddMark(39))
+{
+    System.Console.WriteLine(student.GetAllMarks[0]);
+}
+
+public class Student
+{
+    decimal[] marks = new decimal[5];
+    int markcount;
+
+    public string FirstName { get; set; }
+    public string MiddleName { get; set; }
+    public string LastName { get; set; }
+
+    public Student()
+    {
+        markcount = 0;
+        FirstName = "N/A";
+        MiddleName = "N/A";
+        LastName = "N/A";
+    }
+
+    public string FullName
+    {
+        get
+        {
+            return $"{FirstName} {MiddleName} {LastName}";
+        }
+    }
+
+    public decimal[] GetAllMarks
+    {
+        get
+        {
+            return marks;
+        }
+    }
+    public bool AddMark(decimal mark)
+    {
+        bool addedMark = false;
+        if ((mark >= 0) && (mark <= 100))
+        {
+            marks[markcount] = mark;
+            markcount++;
+            addedMark = true;
+        }
+        return addedMark;
+    }
+}
+</code>
+</pre>
+<h4>6.2 Example Explanation</h4>
+<p>In this example, a method is used to add a mark to the student object. The methods accepts a parameter and it returns a bool indicating if the adding of the mark was succesful.</p>
+
+<h4>6.3 Constructors</h4>
+<p>Whenever a class is created, its constructor is called. A constructor is a special method that is called when an object is instantiated. Parameterless constructors.</p>
+<p>If you don’t provide a constructor for your class, C# creates one by default that instantiates the object and sets member variables to the default values.</p>
+<h4>6.4 Constructor Syntax</h4>
+<p>A constructor is a method whose name is the same as the name of its class. Its method signature includes only the method name and its parameter list; <strong>it does not include a return type</strong>. The following example shows the constructor for a class named Person.</p>
+<h4>6.5 Example</h4>
+<pre>
+<code>
+public class Person
+{
+    private string last;
+    private string first;
+
+    public Person(string lastName, string firstName)
+    {
+        last = lastName;
+        first = firstName;
+    }
+
+    // Remaining implementation of Person class.
+}
+</code>
+</pre>
+
+<h4>6.6 Example</h4>
+<p>If a constructor can be implemented as a single statement, you can use an expression body definition. The following example defines a Location class whose constructor has a single string parameter named name. The expression body definition assigns the argument to the locationName field.</p>
+<pre>
+<code>
+public class Location 
+{ 
+    private string locationName;
+
+    public Location(string name)
+    {
+        Name = name;
+    }
+    
+    public string Name 
+    {
+        get
+        {
+            return locationName;
+        }
+        set
+        {
+            locationName = value;
+        }
+    } 
+}
+</code>
+</pre>
+<h4>6.7 Task 5</h4>
+<p>Create a constrtuctor on the Account class below that takes 2 parameters. An accountName and the initialBalance.</p>
+<pre>
+<code>
+Account myAccount = new Account("Alexios Louridas", 1000);
+Console.WriteLine(myAccount.Name + " has in his account: " + myAccount.Balance + " GBP");
+
+class Account 
+{ 
+    private decimal balance; 
+
+    public string Name { get; set; }
+    
+    public decimal Balance 
+    { 
+        get 
+        { 
+            return balance; 
+        } 
+        set 
+        { 
+            if (value > 0.0m) 
+            { 
+                balance = value; 
+            } 
+        } 
+    }
+
+    // Write the constructor here
+}
+</code>
+</pre>
 	  </div>		
   </section>
 </div>
